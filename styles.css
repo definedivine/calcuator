@@ -8,6 +8,9 @@ body {
     transition: background-color 0.3s;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 body.dark {
@@ -159,22 +162,58 @@ body.dark #calculateButton:hover {
     background-color: #e64a19;
 }
 
-@media (max-width: 500px) {
-    .calculator {
-        padding: 15px;
-    }
+/* Footer Styles */
+.app-footer {
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s, border-color 0.3s;
+    margin-top: auto; /* Ensures footer is pushed to the bottom */
+}
 
-    #display {
-        height: 40px;
-        font-size: 1.2em;
-    }
+body.dark .app-footer {
+    background-color: #555;
+    border-color: #666;
+}
 
-    .button, #calculateButton {
-        padding: 12px;
-        font-size: 1em;
-    }
+.app-footer a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
 
-    .calculator-header h2 {
-        font-size: 1.3em;
-    }
+body.dark .app-footer a {
+    color: #fff;
+}
+
+.app-footer a:hover {
+    text-decoration: underline;
+    color: #ff9800;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem; /* Adds spacing between icons */
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0); /* Makes icons monochromatic */
+    transition: filter 0.3s;
+}
+
+.social-links img:hover {
+    filter: brightness(0.5); /* Lightens icons on hover */
+}
+
+body.dark .social-links img {
+    filter: brightness(1); /* Make icons white in dark mode */
 }
