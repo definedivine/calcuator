@@ -1,28 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let display = document.getElementById('display');
-    let currentTab = 'main';
-    let isDarkMode = false;
+    const display = document.getElementById('display');
     const darkModeToggle = document.getElementById('darkModeToggle');
     const tabButtons = document.querySelectorAll('.tab-button');
     const buttonsContainer = document.querySelector('.buttons');
     const calculateButton = document.getElementById('calculateButton');
 
+    let currentTab = 'main';
+    let isDarkMode = false;
+
     const mainButtons = [
-        '7', '8', '9', '/',
-        '4', '5', '6', '*',
-        '1', '2', '3', '-',
-        '0', '.', 'C', '+'
+        ['7', '8', '9', '/'],
+        ['4', '5', '6', '*'],
+        ['1', '2', '3', '-'],
+        ['0', '.', 'C', '+']
     ];
 
     const scientificButtons = [
-        'sin(', 'cos(', 'tan(', 'π',
-        'log(', 'ln(', '√(', '^',
-        '(', ')', 'e', '!'
+        ['sin(', 'cos(', 'tan(', 'π'],
+        ['log(', 'ln(', '√(', '^'],
+        ['(', ')', 'e', '!']
     ];
 
     const functionsButtons = [
-        'abs(', 'round(', 'floor(', 'ceil(',
-        'min(', 'max(', 'random()', ','
+        ['abs(', 'round(', 'floor(', 'ceil('],
+        ['min(', 'max(', 'random()', ',']
     ];
 
     function renderButtons() {
@@ -35,14 +36,17 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (currentTab === 'functions') {
             buttons = functionsButtons;
         }
-        buttons.forEach(function(value) {
-            let button = document.createElement('button');
-            button.className = 'button';
-            button.textContent = value;
-            button.addEventListener('click', function() {
-                handleButtonClick(value);
+
+        buttons.forEach(function(row) {
+            row.forEach(function(value) {
+                let button = document.createElement('button');
+                button.className = 'button';
+                button.textContent = value;
+                button.addEventListener('click', function() {
+                    handleButtonClick(value);
+                });
+                buttonsContainer.appendChild(button);
             });
-            buttonsContainer.appendChild(button);
         });
     }
 
@@ -112,20 +116,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    darkModeToggle.addEventListener('click', toggleDarkMode);
+    // Verify elements exist before adding event listeners
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+    }
 
-    tabButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            tabButtons.forEach(function(btn) {
-                btn.classList.remove('active');
+    if (tabButtons.length > 0) {
+        tabButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                tabButtons.forEach(function(btn) {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                currentTab = button.getAttribute('data-tab');
+                renderButtons();
             });
-            button.classList.add('active');
-            currentTab = button.getAttribute('data-tab');
-            renderButtons();
         });
-    });
+    }
 
-    calculateButton.addEventListener('click', handleCalculate);
+    if (calculateButton) {
+        calculateButton.addEventListener('click', handleCalculate);
+    }
 
     // Keyboard Support
     document.addEventListener('keydown', function(event) {
@@ -154,8 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Handle Input from Function Keys (e.g., sin, cos)
-    // You can extend this functionality based on your requirements
-
+    // Render buttons initially
     renderButtons();
 });
