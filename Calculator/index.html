@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Calculator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="styles.css">
+    </head>
+<body>
+    <div class="calculator">
+        <div class="calculator-header">
+            <h2>Calculator</h2>
+            <button id="darkModeToggle">🌙</button>
+        </div>
+        <input type="text" id="display" value="0" readonly>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="main">Main</button>
+            <button class="tab-button" data-tab="scientific">Scientific</button>
+            <button class="tab-button" data-tab="functions">Functions</button>
+        </div>
+        <div class="buttons">
+            <!-- Buttons will be dynamically inserted here -->
+        </div>
+        <button id="calculateButton">= Calculate</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <a href="https://buymeacoffee.com/blazpregelj" target="_blank">Buy me Coffee ☕️</a>
+        <div class="social-links">
+            <a href="https://x.com/BPregelj" target="_blank" aria-label="X">
+                <img src="x-icon.svg" alt="X">
+            </a>
+            <a href="https://www.linkedin.com/in/blazpregelj/" target="_blank" aria-label="LinkedIn">
+                <img src="linkedin-icon.svg" alt="LinkedIn">
+            </a>
+            <a href="https://www.reddit.com/user/define_divine/" target="_blank" aria-label="Reddit">
+                <img src="reddit-icon.svg" alt="Reddit">
+            </a>
+            <a href="https://www.instagram.com/podezelski/" target="_blank" aria-label="Instagram">
+                <img src="instagram-icon.svg" alt="Instagram">
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
